@@ -16,7 +16,7 @@ RUN apt-get update \
         python \
         python-pip \
         unzip \
-        libpng12-dev \
+        libpng-dev \
         libfreetype6-dev \
         libjpeg62-turbo-dev \
         libxrender1 \
