@@ -1,7 +1,7 @@
 FROM php:7.3-fpm
 
 RUN apt-get update \
-    && apt-get install -yqq \
+    && apt-get install --no-install-recommends -yqq \
         vim \
         libicu-dev \
         libcurl4-openssl-dev \
@@ -57,7 +57,15 @@ RUN apt-get update \
     && echo "alias sf='bin/console'" >> ~/.bashrc \
     && echo "alias ls='ls --color'" >> ~/.bashrc \
     && echo "alias ll='ls -l'" >> ~/.bashrc \
-    && echo "alias la='ls -la'" >> ~/.bashrc
+    && echo "alias la='ls -la'" >> ~/.bashrc \
+    && apt-get remove -y --pure \
+        wget \
+        git git-core \
+        vim \
+        python \
+        python-pip \
+    && apt-get clean \
+    && rm -rf /root/.composer/cache/* \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV TERM=xterm
-
