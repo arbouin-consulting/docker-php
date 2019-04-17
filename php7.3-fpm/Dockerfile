@@ -58,7 +58,7 @@ RUN apt-get update \
     && echo "alias ls='ls --color'" >> ~/.bashrc \
     && echo "alias ll='ls -l'" >> ~/.bashrc \
     && echo "alias la='ls -la'" >> ~/.bashrc \
-    && apt-get remove -y --pure \
+    && apt-get remove -y \
         wget \
         git git-core \
         vim \
