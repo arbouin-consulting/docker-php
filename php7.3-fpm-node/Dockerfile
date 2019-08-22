@@ -1,4 +1,5 @@
 FROM php:7.3-fpm
+LABEL maintainer="dev@arbouin-consulting.com"
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -yqq \
@@ -74,6 +75,9 @@ RUN export VERSION=v12.0.0 \
     && mkdir -p /usr/local/lib/nodejs \
     && tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs \
     && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.bashrc \
-    && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.zshrc
+    && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.zshrc \
+    && useradd -r -u 1001 -g appuser appuser
+
+USER appuser
 
 ENV TERM=xterm

@@ -66,6 +66,9 @@ RUN apt-get update \
         python-pip \
     && apt-get clean \
     && rm -rf /root/.composer/cache/* \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && useradd -r -u 1001 -g appuser appuser
+
+USER appuser
 
 ENV TERM=xterm

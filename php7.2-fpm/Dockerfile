@@ -1,4 +1,5 @@
 FROM php:7.2-fpm
+LABEL maintainer="dev@arbouin-consulting.com"
 
 RUN apt-get update \
     && apt-get install -yqq \
@@ -55,7 +56,10 @@ RUN apt-get update \
     && echo "alias sf='bin/console'" >> ~/.bashrc \
     && echo "alias ls='ls --color'" >> ~/.bashrc \
     && echo "alias ll='ls -l'" >> ~/.bashrc \
-    && echo "alias la='ls -la'" >> ~/.bashrc
+    && echo "alias la='ls -la'" >> ~/.bashrc \
+    && useradd -r -u 1001 -g appuser appuser
+
+USER appuser
 
 ENV TERM=xterm
 
