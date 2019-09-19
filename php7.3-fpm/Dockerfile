@@ -22,6 +22,7 @@ RUN apt-get update \
         libjpeg62-turbo-dev \
         libxrender1 \
         libfontconfig \
+        librabbitmq-dev \
         libxtst6 \
         xz-utils \
         libzip-dev \
