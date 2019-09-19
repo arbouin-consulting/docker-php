@@ -58,6 +58,7 @@ RUN apt-get update \
     && echo "alias ls='ls --color'" >> ~/.bashrc \
     && echo "alias ll='ls -l'" >> ~/.bashrc \
     && echo "alias la='ls -la'" >> ~/.bashrc \
+    && groupadd appuser \
     && useradd -r -u 1001 -g appuser appuser
 
 USER appuser

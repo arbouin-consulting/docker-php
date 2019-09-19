@@ -1,4 +1,6 @@
 FROM php:7.1-fpm
+LABEL Maintainer = Kevin ARBOUIN dev@arbouin-consulting.com
+LABEL Name = PHP FPM development
 
 RUN apt-get update \
     && apt-get install -yqq --no-install-recommends \

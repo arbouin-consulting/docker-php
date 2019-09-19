@@ -79,6 +79,7 @@ RUN export VERSION=v12.0.0 \
     && tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs \
     && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.bashrc \
     && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.zshrc \
+    && groupadd appuser \
     && useradd -r -u 1001 -g appuser appuser
 
 USER appuser

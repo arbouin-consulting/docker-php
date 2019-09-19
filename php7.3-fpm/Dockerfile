@@ -71,6 +71,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && groupadd appuser \
     && useradd -r -u 1001 -g appuser appuser
 
 USER appuser
