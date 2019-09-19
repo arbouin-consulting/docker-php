@@ -1,5 +1,6 @@
 FROM php:7.3-fpm
-LABEL maintainer="dev@arbouin-consulting.com"
+LABEL Maintainer = Kevin ARBOUIN dev@arbouin-consulting.com
+LABEL Name = PHP FPM development
 
 RUN apt-get update \
     && apt-get install --no-install-recommends -yqq \
@@ -44,6 +45,8 @@ RUN apt-get update \
     && pecl install xdebug mongodb \
     && echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && pecl install amqp \
+    && docker-php-ext-enable amqp \
     && php -r "readfile('https://getcomposer.org/installer');" | php -- --install-dir=/usr/local/bin --filename=composer \
     && chmod +x /usr/local/bin/composer \
     && apt-get clean \

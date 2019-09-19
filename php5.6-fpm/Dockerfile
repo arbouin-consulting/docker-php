@@ -1,5 +1,5 @@
 FROM php:5.6-fpm
-MAINTAINER Kevin ARBOUIN <dev@arbouin-consulting.com>
+LABEL maintainer Kevin ARBOUIN <dev@arbouin-consulting.com>
 
 RUN apt-get update \
     && apt-get install -yqq \
