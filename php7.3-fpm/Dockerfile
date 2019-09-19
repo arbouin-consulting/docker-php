@@ -68,6 +68,8 @@ RUN apt-get update \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && useradd -r -u 1001 -g appuser appuser
+    && pecl install amqp \
+    && docker-php-ext-enable amqp
 
 USER appuser
 
