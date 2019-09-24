@@ -24,6 +24,7 @@ RUN apt-get update \
         libfontconfig \
         librabbitmq-dev \
         libxtst6 \
+        libxml2-dev \
         xz-utils \
         libzip-dev \
         && apt-get clean \
@@ -43,6 +44,7 @@ RUN apt-get update \
         sockets \
         bcmath \
         gd \
+        soap \
     && pecl install xdebug mongodb \
     && echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
