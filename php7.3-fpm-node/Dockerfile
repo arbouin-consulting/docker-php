@@ -81,10 +81,7 @@ RUN export VERSION=v12.0.0 \
     && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.bashrc \
     && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.zshrc \
     && groupadd appuser \
-    && mkdir -p /home/appuser \
-    && useradd -r -u 1000 -g appuser appuser \
-    && chown appuser:appuser /home/appuser \
-    && chmod 0755 /home/appuser
+    && useradd -m -r -u 1000 -g appuser appuser
 
 USER appuser
 

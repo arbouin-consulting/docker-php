@@ -75,10 +75,7 @@ RUN apt-get update \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && groupadd appuser \
-    && mkdir -p /home/appuser \
-    && useradd -r -u 1000 -g appuser appuser \
-    && chown appuser:appuser /home/appuser \
-    && chmod 0755 /home/appuser
+    && useradd -m -r -u 1000 -g appuser appuser
 
 USER appuser
 
