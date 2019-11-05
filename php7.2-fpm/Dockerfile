@@ -51,6 +51,9 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && groupadd appuser \
     && useradd -r -u 1001 -g appuser appuser \
+    && mkdir -p /home/appuser/ \
+    && chown -R appuser:appuser /home/appuser/ \
+    && chmod -R 0711 /home/appuser/ \
     && echo 'export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.composer/vendor/bin:$PATH' >> /home/appuser/.bashrc \
     && echo "alias sf='bin/console'" >> /home/appuser/.bashrc \
     && echo "alias ls='ls --color'" >> /home/appuser/.bashrc \

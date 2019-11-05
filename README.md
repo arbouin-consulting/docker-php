@@ -12,5 +12,5 @@ Default install :
 
 Command for local build:
 ```shell
-$ cd phpX.Y-fpm && docker build -t phpX.Y-fpm-test ./
+$ cd phpX.Y-fpm && docker build -t arcons/php:phpX.Y-fpm ./
 ```

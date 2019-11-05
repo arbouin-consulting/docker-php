@@ -66,11 +66,14 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && groupadd appuser \
     && useradd -m -r -u 1000 -g appuser appuser \
-    && echo 'export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.composer/vendor/bin:$PATH' >> ~/.bashrc \
-    && echo "alias sf='bin/console'" >> ~/.bashrc \
-    && echo "alias ls='ls --color'" >> ~/.bashrc \
-    && echo "alias ll='ls -l'" >> ~/.bashrc \
-    && echo "alias la='ls -la'" >> ~/.bashrc
+    && mkdir -p /home/appuser/ \
+    && chown -R appuser:appuser /home/appuser/ \
+    && chmod -R 0711 /home/appuser/ \
+    && echo 'export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.composer/vendor/bin:$PATH' >> /home/appuser/.bashrc \
+    && echo "alias sf='bin/console'" >> /home/appuser/.bashrc \
+    && echo "alias ls='ls --color'" >> /home/appuser/.bashrc \
+    && echo "alias ll='ls -l'" >> /home/appuser/.bashrc \
+    && echo "alias la='ls -la'" >> /home/appuser/.bashrc
 
 USER appuser
 
