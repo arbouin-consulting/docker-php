@@ -7,6 +7,7 @@ RUN apt-get update \
         vim \
         libicu-dev \
         libcurl4-openssl-dev \
+        libssl-dev \
         zlib1g-dev \
         git git-core \
         gcc make autoconf libc-dev pkg-config \
@@ -50,7 +51,7 @@ RUN apt-get update \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && groupadd appuser \
-    && useradd -r -u 1001 -g appuser appuser \
+    && useradd -m -r -u 1000 -g appuser appuser \
     && mkdir -p /home/appuser/ \
     && chown -R appuser:appuser /home/appuser/ \
     && chmod -R 0711 /home/appuser/ \
@@ -58,7 +59,8 @@ RUN apt-get update \
     && echo "alias sf='bin/console'" >> /home/appuser/.bashrc \
     && echo "alias ls='ls --color'" >> /home/appuser/.bashrc \
     && echo "alias ll='ls -l'" >> /home/appuser/.bashrc \
-    && echo "alias la='ls -la'" >> /home/appuser/.bashrc
+    && echo "alias la='ls -la'" >> /home/appuser/.bashrc \
+    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER appuser
 

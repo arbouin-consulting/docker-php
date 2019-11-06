@@ -2,17 +2,20 @@ FROM php:7.3-fpm
 LABEL Maintainer = Kevin ARBOUIN dev@arbouin-consulting.com
 LABEL Name = PHP FPM development
 
+ENV VERSION=v12.0.0
+ENV DISTRO=linux-x64
+
 RUN apt-get update \
     && apt-get install --no-install-recommends -yqq \
         vim \
         libicu-dev \
         libcurl4-openssl-dev \
+        libssl-dev \
         zlib1g-dev \
         git git-core \
         gcc make autoconf libc-dev pkg-config \
         zlib1g-dev \
         curl \
-        zsh \
         wget \
         python \
         python-pip \
@@ -26,6 +29,8 @@ RUN apt-get update \
         libxtst6 \
         xz-utils \
         libzip-dev \
+        mongo-tools \
+        sudo \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && curl "https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz" -L -o "wkhtmltopdf.tar.xz" \
@@ -73,15 +78,20 @@ RUN apt-get update \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN export VERSION=v12.0.0 \
-    && export DISTRO=linux-x64 \
-    && curl "https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz" -L -o "node-$VERSION-$DISTRO.tar.xz" \
+RUN curl "https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.xz" -L -o "node-$VERSION-$DISTRO.tar.xz" \
     && mkdir -p /usr/local/lib/nodejs \
     && tar -xJvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs \
-    && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.bashrc \
-    && echo "PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH" >> ~/.zshrc \
     && groupadd appuser \
-    && useradd -m -r -u 1000 -g appuser appuser
+    && useradd -m -r -u 1000 -g appuser appuser \
+    && mkdir -p /home/appuser/ \
+    && chown -R appuser:appuser /home/appuser/ \
+    && chmod -R 0711 /home/appuser/ \
+    && echo 'export PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$HOME/.composer/vendor/bin:/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH' >> /home/appuser/.bashrc \
+    && echo "alias sf='bin/console'" >> /home/appuser/.bashrc \
+    && echo "alias ls='ls --color'" >> /home/appuser/.bashrc \
+    && echo "alias ll='ls -l'" >> /home/appuser/.bashrc \
+    && echo "alias la='ls -la'" >> /home/appuser/.bashrc \
+    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER appuser
 

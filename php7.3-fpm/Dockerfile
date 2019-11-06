@@ -27,6 +27,7 @@ RUN apt-get update \
         xz-utils \
         libzip-dev \
         mongo-tools \
+        sudo \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && curl "https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz" -L -o "wkhtmltopdf.tar.xz" \
@@ -73,7 +74,8 @@ RUN apt-get update \
     && echo "alias sf='bin/console'" >> /home/appuser/.bashrc \
     && echo "alias ls='ls --color'" >> /home/appuser/.bashrc \
     && echo "alias ll='ls -l'" >> /home/appuser/.bashrc \
-    && echo "alias la='ls -la'" >> /home/appuser/.bashrc
+    && echo "alias la='ls -la'" >> /home/appuser/.bashrc \
+    && echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
 USER appuser
 
