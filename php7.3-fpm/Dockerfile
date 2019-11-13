@@ -57,8 +57,6 @@ RUN apt-get update \
     && rm -rf /root/.composer/cache/* \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && apt-get remove -y \
-        wget \
-        git git-core \
         vim \
         python \
         python-pip \
