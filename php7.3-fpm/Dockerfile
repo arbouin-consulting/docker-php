@@ -7,6 +7,7 @@ RUN apt-get update \
         vim \
         libicu-dev \
         libcurl4-openssl-dev \
+        libssl-dev \
         zlib1g-dev \
         git git-core \
         gcc make autoconf libc-dev pkg-config \

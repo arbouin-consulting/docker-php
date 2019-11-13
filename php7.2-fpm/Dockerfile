@@ -22,8 +22,11 @@ RUN apt-get update \
         libjpeg62-turbo-dev \
         libxrender1 \
         libfontconfig \
+        librabbitmq-dev \
         libxtst6 \
+        libxml2-dev \
         xz-utils \
+        libzip-dev \
         mongo-tools \
         sudo \
         ssh \
