@@ -30,8 +30,8 @@ RUN apt-get update \
         sudo \
         ssh \
         && apt-get clean \
-        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && curl "https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz" -L -o "wkhtmltopdf.tar.xz" \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN curl "https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz" -L -o "wkhtmltopdf.tar.xz" \
     && tar Jxvf wkhtmltopdf.tar.xz \
     && mv wkhtmltox/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf \
     && rm -rf wkhtmltopdf.tar.xz wkhtmltox/ \
@@ -47,8 +47,8 @@ RUN apt-get update \
         bcmath \
         gd \
         soap \
-        pcntl \
-    && pecl install xdebug mongodb \
+        pcntl
+RUN pecl install xdebug mongodb \
     && echo "extension=mongodb.so" >> /usr/local/etc/php/conf.d/mongodb.ini \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
     && pecl install amqp \
@@ -64,8 +64,8 @@ RUN apt-get update \
         python-pip \
     && apt-get clean \
     && rm -rf /root/.composer/cache/* \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && groupadd appuser \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN groupadd appuser \
     && useradd -m -r -u 1000 -g appuser appuser \
     && mkdir -p /home/appuser/ \
     && chown -R appuser:appuser /home/appuser/ \
