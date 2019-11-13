@@ -28,6 +28,7 @@ RUN apt-get update \
         libzip-dev \
         mongo-tools \
         sudo \
+        ssh \
         && apt-get clean \
         && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && curl "https://downloads.wkhtmltopdf.org/0.12/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz" -L -o "wkhtmltopdf.tar.xz" \
